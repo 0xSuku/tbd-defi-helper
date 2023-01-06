@@ -1,6 +1,6 @@
 declare type Wallet = {
-  isConnected?: boolean;
-  address: string;
-  balance: number;
-  chainId: number;
+    isConnected?: boolean;
+    address: string;
+    balance: number;
+    chainId: number;
 };

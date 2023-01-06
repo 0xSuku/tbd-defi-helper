@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import requestAccounts from "../../helpers/wallet/requestAccounts";
-
 
 type Values = {
 	wallet: Wallet;
@@ -12,7 +11,7 @@ const initialValues: Values = {
 		address: "",
 		isConnected: false,
 		balance: 0,
-		chainId: 0,
+		chainId: 0
 	},
 	setWallet: () => { },
 };
@@ -26,15 +25,12 @@ const WalletProvider = ({ children }: any) => {
 		balance: 0,
 		chainId: 0
 	});
-	const getUserInfo = async () => {
+	const getUserInfo = useCallback(async () => {
 		if (window.ethereum) {
 			const userInfo = await requestAccounts();
-			setWallet({
-				...wallet,
-				...userInfo,
-			});
+			setWallet(userInfo);
 		}
-	};
+	}, []);
 	const values: Values = { wallet, setWallet };
 
 	if (window.ethereum)
@@ -46,7 +42,7 @@ const WalletProvider = ({ children }: any) => {
 		window.setTimeout(() => {
 			getUserInfo();
 		}, 1500);
-	}, []);
+	}, [getUserInfo]);
 
 	return (
 		<WalletContext.Provider value={values}>

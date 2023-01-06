@@ -3,8 +3,9 @@
 }
 .contentArea {
   flex-grow: 1;
-  max-width: 1300px;
-  margin: 0 auto;
+  margin: 0 auto;  
+  background-color: #03031a;
+  background-image: url('/assets/images/bg/stars.svg');  
 }
 .card {
   box-shadow: $card-box-shadow;

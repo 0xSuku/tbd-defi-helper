@@ -1,5 +1,5 @@
-import { IProtocol } from "../entities/types/protocol"
-import { Protocols, ProtocolTypes } from "./constants"
+import { IProtocol } from "../../entities/types/protocol"
+import { Protocols } from "./constants"
 
 const protocolList: IProtocol[] = [{
     symbol: Protocols.Qi_Dao,

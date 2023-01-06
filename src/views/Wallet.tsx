@@ -1,28 +1,48 @@
+import { CurrencyAmount, Token } from '@uniswap/sdk-core';
 import { useEffect } from 'react'
-import { Button } from 'reactstrap';
-import { ethers } from "ethers";
+import useTokens from '../context/tokens/useTokens';
 import useWallet from '../context/wallet/useWallet';
-import ProtocolComponent from '../components/protocol/protocol';
+import { TokenAmount } from '../entities/types/shared/types';
+import { fetchWalletNatives, fetchWalletTokens } from '../helpers/http';
+import { bnToFixed } from '../helpers/tokenParser';
+
 
 export default function Protocols() {
 
     const { wallet } = useWallet();
+    const { tokens, setTokens } = useTokens();
 
     useEffect(() => {
-        if (wallet.isConnected && wallet.chainId === 137) {
+        const setWallet = async () => {
+            try {
+                const walletNatives = await fetchWalletNatives(wallet.address);
+                const walletTokens = await fetchWalletTokens(wallet.address);
+                const walletComplete = walletNatives.concat(walletTokens);
+                if (walletComplete) {
+                    setTokens(walletComplete);
+                }
+            } catch (err: any) {
+                debugger;
+            }
+        }
+
+        if (wallet.isConnected) {
             setWallet();
         }
-    }, [wallet.isConnected, wallet.chainId]);
-
-    function setWallet() {
-        
-    }
+    }, [wallet.isConnected, wallet.address, setTokens]);
 
     function showData() {
         return <>
             <div className="my-3 uppercase tracking-wide text-xs">
                 Chain: {wallet.chainId} | Balance: {wallet.balance.toString().slice(0, 10)} MATIC
             </div>
+            {
+                tokens.length ?
+                    <div className='center-container'>
+                        {tokens.map((tokenAmount: TokenAmount) => <div>{tokenAmount.token.symbol}: {bnToFixed(tokenAmount.amount, tokenAmount.token)}</div>)}
+                    </div>
+                    : <div></div>
+            }
         </>
     }
 

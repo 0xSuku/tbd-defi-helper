@@ -1,8 +1,8 @@
 import Table from 'react-bootstrap/Table';
 import { IProtocolItem } from '../../entities/types/protocol';
-import { Protocols, ProtocolTypes } from '../../protocols/constants';
-import qiAdapter from '../../protocols/qidao/qidao-adapter';
-import qiFarms from '../../protocols/qidao/qidao-farms';
+import { Protocols, ProtocolTypes } from '../../helpers/protocols/constants';
+import qiAdapter from '../../helpers/protocols/qidao/qidao-adapter';
+import qiFarms from '../../helpers/protocols/qidao/qidao-farms';
 
 export interface IProtocolItemComponent {
     items: IProtocolItem[];

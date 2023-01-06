@@ -1,16 +1,16 @@
-import { useEffect } from 'react'
+import { useCallback, useEffect } from 'react'
 import { IProtocol } from '../entities/types/protocol';
 import useWallet from '../context/wallet/useWallet';
 import useProtocol from '../context/protocols/useProtocols';
 import ProtocolComponent from '../components/protocol/protocol';
-import protocolList from '../protocols';
-import qiAdapter from '../protocols/qidao/qidao-adapter';
+import protocolList from '../helpers/protocols';
+import qiAdapter from '../helpers/protocols/qidao/qidao-adapter';
 
 export default function Protocols() {
     const { wallet } = useWallet();
     const { protocols, setProtocols } = useProtocol();
 
-    const _setProtocols = async () => {
+    const _setProtocols = useCallback(async () => {
         protocolList.forEach(protocol => protocol.info = []);
         const prot = await Promise.all(
             protocolList.map(async (protocol: IProtocol) => {
@@ -19,13 +19,13 @@ export default function Protocols() {
             })
         );
         setProtocols(prot);
-    }
+    }, [wallet.address, setProtocols]);
 
     useEffect(() => {
         if (wallet.isConnected) {
             _setProtocols();
         }
-    }, [wallet, wallet.isConnected]);
+    }, [wallet, wallet.isConnected, _setProtocols]);
 
     useEffect(() => {
         if (protocols.length) {

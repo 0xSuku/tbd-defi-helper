@@ -1,5 +1,5 @@
 import { CurrencyAmount, Token } from '@uniswap/sdk-core'
-import { ProtocolTypes, Protocols } from '../../../protocols/constants';
+import { ProtocolTypes, Protocols } from '../../../helpers/protocols/constants';
 
 declare type IProtocolItem = {
     pool: Token[];

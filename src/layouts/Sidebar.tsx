@@ -1,18 +1,26 @@
-import { Button, Nav, NavItem } from "reactstrap";
+import { Nav, NavItem } from "reactstrap";
 import { Link, useLocation } from "react-router-dom";
-import user1 from "../assets/images/users/user4.jpg";
-import probg from "../assets/images/bg/download.jpg";
 
 const navigation = [
     {
-      title: "Wallet",
-      href: "/wallet",
-      icon: "bi bi-wallet",
+        title: "Dashboard",
+        href: "/dashboard",
+        icon: "bi bi-clipboard-data",
+    },
+    {
+        title: "Wallet",
+        href: "/wallet",
+        icon: "bi bi-wallet",
     },
     {
         title: "Protocols",
         href: "/protocols",
         icon: "bi bi-cash",
+    },
+    {
+        title: "History",
+        href: "/history",
+        icon: "bi bi-clock-history",
     },
     {
         title: "Alerts",

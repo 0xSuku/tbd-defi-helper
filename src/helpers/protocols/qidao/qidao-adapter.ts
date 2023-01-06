@@ -1,7 +1,7 @@
 import { CurrencyAmount } from "@uniswap/sdk-core";
 import { BigNumber } from "ethers";
-import { IProtocolInfo } from "../../entities/types/protocol"
-import loadSmartContract from "../../helpers/wallet/loadSmartContract";
+import { IProtocolInfo } from "../../../entities/types/protocol"
+import loadSmartContract from "../../wallet/loadSmartContract";
 import { ProtocolTypes } from "../constants";
 import qiFarms, { IContractStaticInfo } from "./qidao-farms";
 
@@ -16,6 +16,7 @@ const qiAdapter: IProtocolAdapter = {
             type: ProtocolTypes.Farms,
             items: []
         };
+        
         await Promise.all(
             qiFarms.map(async (contractStaticInfo: IContractStaticInfo) => {
                 let _deposited = '0';
@@ -44,7 +45,7 @@ const qiAdapter: IProtocolAdapter = {
     claimRewards: async (contractStaticInfo: IContractStaticInfo) => {
         const contract = loadSmartContract(contractStaticInfo.address, contractStaticInfo.abi);
         if (contract) {
-            const tx = await contract.deposit(BigNumber.from('0'), BigNumber.from('0'));
+            await contract.deposit(BigNumber.from('0'), BigNumber.from('0'));
         } else {
             throw Error('Contract not found');
         }
