@@ -1,31 +1,34 @@
-import { useCallback, useEffect } from 'react'
-import { IProtocol } from '../entities/types/protocol';
+import { useEffect } from 'react'
 import useWallet from '../context/wallet/useWallet';
 import useProtocol from '../context/protocols/useProtocols';
 import ProtocolComponent from '../components/protocol/protocol';
-import protocolList from '../helpers/protocols';
-import qiAdapter from '../helpers/protocols/qidao/qidao-adapter';
+import { fetchWalletProtocols } from '../helpers/http';
 
 export default function Protocols() {
     const { wallet } = useWallet();
     const { protocols, setProtocols } = useProtocol();
-
-    const _setProtocols = useCallback(async () => {
-        protocolList.forEach(protocol => protocol.info = []);
-        const prot = await Promise.all(
-            protocolList.map(async (protocol: IProtocol) => {
-                protocol.info.push(await qiAdapter.getFarmInfo(wallet.address));
-                return protocol;
-            })
-        );
-        setProtocols(prot);
-    }, [wallet.address, setProtocols]);
+    let addressConnected = '';
 
     useEffect(() => {
-        if (wallet.isConnected) {
-            _setProtocols();
+        const startProtocols = async () => {
+            try {
+                const walletProtocols = await fetchWalletProtocols(wallet.address);
+                if (walletProtocols) {
+                    setProtocols(walletProtocols);
+                }
+            } catch (err: any) {
+                debugger;
+            }
         }
-    }, [wallet, wallet.isConnected, _setProtocols]);
+
+        if (wallet.isConnected) {
+            if (wallet.address !== addressConnected) {
+                addressConnected = wallet.address;
+                setProtocols([]);
+            }
+            startProtocols();
+        }
+    }, [wallet.isConnected, wallet.address, setProtocols]);
 
     useEffect(() => {
         if (protocols.length) {

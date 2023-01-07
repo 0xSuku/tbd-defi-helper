@@ -1,10 +1,9 @@
-import { CurrencyAmount, Token } from '@uniswap/sdk-core';
 import { useEffect } from 'react'
 import useTokens from '../context/tokens/useTokens';
 import useWallet from '../context/wallet/useWallet';
-import { TokenAmount } from '../entities/types/shared/types';
 import { fetchWalletNatives, fetchWalletTokens } from '../helpers/http';
 import { bnToFixed } from '../helpers/tokenParser';
+import { TokenAmount } from '../shared/types/tokens';
 
 
 export default function Protocols() {
@@ -13,7 +12,7 @@ export default function Protocols() {
     const { tokens, setTokens } = useTokens();
 
     useEffect(() => {
-        const setWallet = async () => {
+        const startWallet = async () => {
             try {
                 const walletNatives = await fetchWalletNatives(wallet.address);
                 const walletTokens = await fetchWalletTokens(wallet.address);
@@ -27,7 +26,7 @@ export default function Protocols() {
         }
 
         if (wallet.isConnected) {
-            setWallet();
+            startWallet();
         }
     }, [wallet.isConnected, wallet.address, setTokens]);
 

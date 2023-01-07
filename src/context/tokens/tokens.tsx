@@ -1,5 +1,5 @@
 import React from "react";
-import { TokenAmount } from "../../entities/types/shared/types";
+import { TokenAmount } from "../../shared/types/tokens";
 
 type Values = {
 	tokens: TokenAmount[];

@@ -1,9 +1,9 @@
 import Accordion from 'react-bootstrap/Accordion';
-import { IProtocol } from '../../entities/types/protocol';
 import { getProtocolName } from '../../helpers/protocol';
+import { Protocol } from '../../shared/types/protocols';
 import ProtocolItemComponent from './protocol-item';
 
-export default function ProtocolComponent(protocol: IProtocol) {
+export default function ProtocolComponent(protocol: Protocol) {
     return (
         <Accordion defaultActiveKey="0">
             <Accordion.Item eventKey="0">

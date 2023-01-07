@@ -1,11 +1,11 @@
 import Table from 'react-bootstrap/Table';
-import { IProtocolItem } from '../../entities/types/protocol';
-import { Protocols, ProtocolTypes } from '../../helpers/protocols/constants';
-import qiAdapter from '../../helpers/protocols/qidao/qidao-adapter';
-import qiFarms from '../../helpers/protocols/qidao/qidao-farms';
+import { Protocols, ProtocolTypes } from '../../shared/protocols/constants';
+import qiAdapter from '../../shared/protocols/qidao/qidao-adapter';
+import qiFarms from '../../shared/protocols/qidao/qidao-farms';
+import { ProtocolItem } from '../../shared/types/protocols';
 
 export interface IProtocolItemComponent {
-    items: IProtocolItem[];
+    items: ProtocolItem[];
     symbol: Protocols;
     type: ProtocolTypes;
 }
@@ -17,6 +17,8 @@ export default function ProtocolItemComponent(req: IProtocolItemComponent) {
             case Protocols.Qi_Dao:
                 contractStaticInfo = qiFarms.find(qiFarm => qiFarm.address === address);
                 break;
+            default:
+                throw Error('Claim not declared');
         }
         if (contractStaticInfo) {
             try {
@@ -26,8 +28,6 @@ export default function ProtocolItemComponent(req: IProtocolItemComponent) {
                     console.log('User rejected the tx');
                 }
             }
-        } else {
-            throw Error('Claim not declared');
         }
     }
 
@@ -47,8 +47,8 @@ export default function ProtocolItemComponent(req: IProtocolItemComponent) {
                 {items.map(item => (
                     <tr>
                         <td>{item.pool.map(p => p.name)}</td>
-                        <td>{item.balance}</td>
-                        <td>{item.rewards}</td>
+                        <td>{item.balance[0].amount} {item.balance[0].currency?.symbol}</td>
+                        <td>{item.rewards ? item.rewards[0].amount : 1} {item.rewards ? item.rewards[0].currency?.symbol : ''}</td>
                         <td>{item.usdValue}</td>
                         <td><button onClick={() => claimRewards(item.address)}>Claim</button></td>
                     </tr>

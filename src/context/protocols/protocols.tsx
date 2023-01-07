@@ -1,10 +1,10 @@
 import React from "react";
-import { IProtocol } from "../../entities/types/protocol";
+import { Protocol } from "../../shared/types/protocols";
 
 
 type Values = {
-	protocols: IProtocol[];
-	setProtocols: (values: IProtocol[]) => void;
+	protocols: Protocol[];
+	setProtocols: (values: Protocol[]) => void;
 };
 
 const initialValues: Values = {
@@ -15,7 +15,7 @@ const initialValues: Values = {
 const ProtocolContext = React.createContext<Values>(initialValues);
 
 const ProtocolProvider = ({ children }: any) => {
-	const [protocols, setProtocols] = React.useState<IProtocol[]>([]);
+	const [protocols, setProtocols] = React.useState<Protocol[]>([]);
 	const values: Values = { protocols, setProtocols };
 
 	return (
