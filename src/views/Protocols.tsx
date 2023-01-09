@@ -7,7 +7,6 @@ import { fetchWalletProtocols } from '../helpers/http';
 export default function Protocols() {
     const { wallet } = useWallet();
     const { protocols, setProtocols } = useProtocol();
-    let addressConnected = '';
 
     useEffect(() => {
         const startProtocols = async () => {
@@ -22,10 +21,6 @@ export default function Protocols() {
         }
 
         if (wallet.isConnected) {
-            if (wallet.address !== addressConnected) {
-                addressConnected = wallet.address;
-                setProtocols([]);
-            }
             startProtocols();
         }
     }, [wallet.isConnected, wallet.address, setProtocols]);

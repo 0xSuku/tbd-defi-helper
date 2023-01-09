@@ -1,0 +1,17 @@
+.protocol-column {
+    :nth-child(1) {
+        width: 20%;
+    }
+    :nth-child(2) {
+        width: 48%;
+    }
+    :nth-child(3) {
+        width: 12%;
+    }
+    :nth-child(4) {
+        width: 12%;
+    }
+    :nth-child(5) {
+        width: 8%;
+    }
+}
