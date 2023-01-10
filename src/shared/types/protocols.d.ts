@@ -10,7 +10,7 @@ declare type CurrencyAmountHttp = {
 declare type ProtocolItem = {
     pool: Token[];
     balance: CurrencyAmountHttp[];
-    rewards?: CurrencyAmountHttp[];
+    rewards: CurrencyAmountHttp[];
     usdValue: number;
     address: string;
 }

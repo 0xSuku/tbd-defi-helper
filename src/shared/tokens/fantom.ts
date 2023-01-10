@@ -17,7 +17,10 @@ const fantom: TokenInfo = {
     },
     vMLP: {
         token: new Token(ChainId.Fantom, '0x2a3e489f713ab6f652af930555b5bb3422711ac1', 18, 'vMLP', 'Vested MLP'),
-    },    
+    },
+    sMMY: {
+        token: new Token(ChainId.Fantom, '0x727db8fa7861340d49d13ea78321d0c9a1a79cd5', 18, 'sMMY', 'Staked MMY'),
+    },
 };
 
 export default fantom;

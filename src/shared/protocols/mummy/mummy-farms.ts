@@ -7,7 +7,17 @@ import { stakerABI, vesterABI } from "./mummy-abis";
 export const mummyFarms: ContractStaticInfo[] = [
     {
         abi: stakerABI,
-        address: "0xffb69477fee0daeb64e7de89b57846afa990e99c",
+        address: Tokens.fantom.esMMY.token.address,
+        name: 'Staked MMY',
+        protocol: Protocols.Mummy,
+        type: ProtocolTypes.Staking,
+        chainId: ChainId.Fantom,
+        token: Tokens.fantom.esMMY.token,
+        tokenRewards: Tokens.fantom.esMMY.token
+    },
+    {
+        abi: stakerABI,
+        address: Tokens.fantom.fsMLP.token.address,
         name: 'Staked MLP',
         protocol: Protocols.Mummy,
         type: ProtocolTypes.Staking,

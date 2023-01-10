@@ -1,3 +1,4 @@
+import { BigNumber } from 'ethers';
 import { useEffect } from 'react'
 import useTokens from '../context/tokens/useTokens';
 import useWallet from '../context/wallet/useWallet';
@@ -38,7 +39,11 @@ export default function Protocols() {
             {
                 tokens.length ?
                     <div className='center-container'>
-                        {tokens.map((tokenAmount: TokenAmount) => <div>{tokenAmount.token.symbol}: {bnToFixed(tokenAmount.amount, tokenAmount.token)}</div>)}
+                        {tokens.map((tokenAmount: TokenAmount) => {
+                            const amountBN = BigNumber.from(tokenAmount.amount);
+                            if (amountBN.gt(0))
+                                return <div>{tokenAmount.token.symbol}: {bnToFixed(tokenAmount.amount, tokenAmount.token)}</div>
+                        })}
                     </div>
                     : <div></div>
             }

@@ -1,12 +1,12 @@
 import Table from 'react-bootstrap/Table';
 import qiAdapter from '../../shared/protocols/qidao/qidao-adapter';
 import qiFarms from '../../shared/protocols/qidao/qidao-farms';
-import gmxAdapter from '../../shared/protocols/gmx/gmx-adapter';
+import gmxAdapter from '../../protocols/gmx/gmx-frontend-adapter';
 import { bnDisplay } from '../../helpers/tokenParser';
 import { Protocols, ProtocolTypes } from '../../shared/protocols/constants';
-import { rewardRouterABI, rewardRouterAddress } from '../../shared/protocols/gmx/mummy-abis';
-import { mummyFarms } from '../../shared/protocols/gmx/mummy-farms';
 import { ProtocolItem } from '../../shared/types/protocols';
+import { rewardRouterAddress, rewardRouterABI } from '../../shared/protocols/mummy/mummy-abis';
+import { mummyFarms } from '../../shared/protocols/mummy/mummy-farms';
 import './protocol-item.scss';
 
 export interface IProtocolItemComponent {
@@ -58,8 +58,20 @@ export default function ProtocolItemComponent(req: IProtocolItemComponent) {
                 {items.map(item => (
                     <tr>
                         <td>{item.pool.map(p => p.name)}</td>
-                        <td>{bnDisplay(item.balance[0].amount, 4)} {item.balance[0].currency?.symbol}</td>
-                        <td>{item.rewards ? bnDisplay(item.rewards[0].amount, 4) : 0} {item.rewards ? item.rewards[0].currency?.symbol : ''}</td>
+                        <td>
+                            {
+                                item.balance.map(balance => {
+                                    return <div>{bnDisplay(balance.amount, 4) + ' ' + balance.currency.symbol}</div>
+                                })
+                            }
+                        </td>
+                        <td>
+                            {
+                                item.rewards.map(reward => {
+                                    return <div>{bnDisplay(reward.amount, 4) + ' ' + reward.currency.symbol}</div>
+                                })
+                            }
+                        </td>
                         <td>{item.usdValue}</td>
                         <td><button onClick={() => claimRewards(item.address)}>Claim</button></td>
                     </tr>
