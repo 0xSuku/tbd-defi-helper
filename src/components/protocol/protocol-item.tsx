@@ -44,7 +44,7 @@ export default function ProtocolItemComponent(req: IProtocolItemComponent) {
 
     const items = req.items;
     if (items) {
-        return <Table>
+        return <Table className='protocol-table'>
             <thead>
                 <tr className='protocol-column'>
                     <th>Pool</th>
@@ -64,6 +64,7 @@ export default function ProtocolItemComponent(req: IProtocolItemComponent) {
                                     return <div>{bnDisplay(balance.amount, 4) + ' ' + balance.currency.symbol}</div>
                                 })
                             }
+                            <div>($0)</div>
                         </td>
                         <td>
                             {
@@ -71,6 +72,7 @@ export default function ProtocolItemComponent(req: IProtocolItemComponent) {
                                     return <div>{bnDisplay(reward.amount, 4) + ' ' + reward.currency.symbol}</div>
                                 })
                             }
+                            <div>($0)</div>
                         </td>
                         <td>{item.usdValue}</td>
                         <td><button onClick={() => claimRewards(item.address)}>Claim</button></td>

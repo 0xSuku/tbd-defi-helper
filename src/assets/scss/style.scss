@@ -4,3 +4,16 @@
 @import "~bootstrap-icons/font/bootstrap-icons.scss";
 @import "./layout/sidebar";
 @import "./layout/container";
+
+.component-display {
+    max-width: 1200px;
+    margin: auto;
+    background: #161616;
+    border-radius: 10px;
+    padding: 10px 20px;
+}
+
+* {
+    font-size: 14px;
+    font-weight: 500;
+}

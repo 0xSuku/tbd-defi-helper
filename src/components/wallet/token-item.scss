@@ -1,22 +1,25 @@
-.protocol-column {
+.token-column {
     :nth-child(1) {
-        width: 20%;
+        width: 2%;
     }
     :nth-child(2) {
-        width: 48%;
+        width: 30%;
     }
     :nth-child(3) {
-        width: 12%;
+        width: 20%;
     }
     :nth-child(4) {
-        width: 12%;
+        width: 20%;
     }
     :nth-child(5) {
-        width: 6%;
+        width: 20%;
+    }
+    :nth-child(6) {
+        width: 8%;
     }
 }
 
-.protocol-table {    
+.token-table {    
     td {
         vertical-align: middle;
     }
