@@ -27,9 +27,9 @@ export default function TokenItemComponent(params: { tokenAmounts: TokenAmount[]
                         return <tr>
                             <td><TokenIconComponent token={tokenAmount.tokenDetail.token}></TokenIconComponent></td>
                             <td>{tokenAmount.tokenDetail.token.symbol}</td>
-                            <td className='text-end'>$ {bnDisplay(tokenAmount.price.toString(), 2)}</td>
+                            <td className='text-end'>${bnDisplay(tokenAmount.price.toString(), 2)}</td>
                             <td className='text-end' title={amountFormatted}>{bnDisplay(amountFormatted, 4)}</td>
-                            <td className='text-end'>$ {bnDisplay(tokenAmount.usdValue.toString(), 2)}</td>
+                            <td className='text-end'>${bnDisplay(tokenAmount.usdValue.toString(), 2)}</td>
                             <td><button onClick={() => { }}>Dump</button></td>
                         </tr>
                     } else {

@@ -1,6 +1,6 @@
 import Table from 'react-bootstrap/Table';
-import qiAdapter from '../../shared/protocols/qidao/qidao-adapter';
 import qiFarms from '../../shared/protocols/qidao/qidao-farms';
+import qiAdapter from '../../protocols/qidao/qidao-adapter';
 import gmxAdapter from '../../protocols/gmx/gmx-frontend-adapter';
 import { bnDisplay } from '../../helpers/tokenParser';
 import { Protocols, ProtocolTypes } from '../../shared/protocols/constants';
@@ -49,32 +49,34 @@ export default function ProtocolItemComponent(req: IProtocolItemComponent) {
                 <tr className='protocol-column'>
                     <th>Pool</th>
                     <th>Balance</th>
-                    <th>Rewards</th>
-                    <th>USD Value</th>
+                    <th className='text-end'>Rewards</th>
+                    <th className='text-end'>USD Value</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
                 {items.map(item => (
                     <tr>
-                        <td>{item.pool.map(p => p.name)}</td>
+                        <td>{item.pool.map(p => p.token.name)}</td>
                         <td>
                             {
                                 item.balance.map(balance => {
-                                    return <div>{bnDisplay(balance.amount, 4) + ' ' + balance.currency.symbol}</div>
+                                    return <div>
+                                        {bnDisplay(balance.amount, 4) + ' ' + balance.tokenDetail.token.symbol} (${bnDisplay(balance.usdValue.toString(), 2)})
+                                    </div>
                                 })
                             }
-                            <div>($0)</div>
                         </td>
-                        <td>
+                        <td className='text-end'>
                             {
-                                item.rewards.map(reward => {
-                                    return <div>{bnDisplay(reward.amount, 4) + ' ' + reward.currency.symbol}</div>
+                                item.rewards?.map(reward => {
+                                    return <div>
+                                        {bnDisplay(reward.amount, 4) + ' ' + reward.tokenDetail.token.symbol} (${bnDisplay(reward.usdValue.toString(), 2)})
+                                    </div>
                                 })
                             }
-                            <div>($0)</div>
                         </td>
-                        <td>{item.usdValue}</td>
+                        <td className='text-end'>${item.usdValue}</td>
                         <td><button onClick={() => claimRewards(item.address)}>Claim</button></td>
                     </tr>
                 ))}
