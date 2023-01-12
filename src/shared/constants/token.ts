@@ -7,6 +7,7 @@ export enum TokenTypes {
 	BNB = 'BNB',
 	ETH = 'ETH',
 	MATIC = 'MATIC',
+	METIS = 'METIS',
 	BTC = 'BTC',
 	ADA = 'ADA',
 	FTM = 'FTM',
@@ -21,9 +22,12 @@ export enum TokenTypes {
 	SNX = 'SNX',
 	KNC = 'KNC',
 	MMY = 'MMY',
-
 	GMX = 'GMX',
 	esGMX = 'esGMX',
+	QUICK = 'QUICK',
+	GNO = 'GNO',
+	USDPLUS = 'USD+',
+	HUM = 'HUM',
 }
 
 export interface TokenTypesData {
@@ -42,11 +46,11 @@ export const tokenTypesData: Record<TokenTypes, TokenTypesData> = {
 	},
 	'BUSD': {
 		isStable: true,
-		coingeckoName: ''
+		coingeckoName: 'binance-usd'
 	},
 	'USDT': {
 		isStable: true,
-		coingeckoName: ''
+		coingeckoName: 'tether'
 	},
 	'USDC': {
 		isStable: true,
@@ -127,5 +131,25 @@ export const tokenTypesData: Record<TokenTypes, TokenTypesData> = {
 	'esGMX': {
 		isStable: false,
 		coingeckoName: 'gmx'
+	},
+	'QUICK': {
+		isStable: false,
+		coingeckoName: 'quickswap'
+	},
+	'GNO': {
+		isStable: false,
+		coingeckoName: 'gnosis'
+	},
+	'USD+': {
+		isStable: false,
+		coingeckoName: 'usd'
+	},
+	'METIS': {
+		isStable: false,
+		coingeckoName: 'metis-token'
+	},
+	'HUM': {
+		isStable: false,
+		coingeckoName: 'hummus'
 	}
 }

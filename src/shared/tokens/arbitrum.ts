@@ -35,7 +35,7 @@ const arbitrum: TokenInfo = {
     },
     sGMX: {
         token: new Token(ChainId.Arbitrum, '0x908C4D94D34924765f1eDc22A1DD098397c59dD4', 18, 'sGMX', 'Staked GMX'),
-        tokenInfo: TokenTypes.UNUSED,
+        tokenInfo: TokenTypes.GMX,
         disabled: true,
     },
     fsGLP: {
@@ -50,7 +50,7 @@ const arbitrum: TokenInfo = {
     },
     vGMX: {
         token: new Token(ChainId.Arbitrum, '0x199070DDfd1CFb69173aa2F7e20906F26B363004', 18, 'vGMX', 'Vested GMX'),
-        tokenInfo: TokenTypes.UNUSED,
+        tokenInfo: TokenTypes.GMX,
         disabled: true,
     },
     vGLP: {

@@ -1,6 +1,5 @@
 import Accordion from 'react-bootstrap/Accordion';
 import { getProtocolName } from '../../helpers/protocol';
-import { Protocols } from '../../shared/protocols/constants';
 import { Protocol } from '../../shared/types/protocols';
 import IconProtocolComponent from '../icon-protocol/icon-protocol';
 import ProtocolItemComponent from './protocol-item';
