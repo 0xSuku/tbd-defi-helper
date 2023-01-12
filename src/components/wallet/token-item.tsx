@@ -3,7 +3,7 @@ import { bnDisplay } from '../../helpers/tokenParser';
 import { TokenAmount } from '../../shared/types/tokens';
 import Table from 'react-bootstrap/Table';
 import './token-item.scss';
-import TokenIconComponent from '../token-icon/token-icon';
+import IconTokenComponent from '../icon-token/icon-token';
 
 export default function TokenItemComponent(params: { tokenAmounts: TokenAmount[] }) {
     const tokenAmounts = params.tokenAmounts;
@@ -25,7 +25,7 @@ export default function TokenItemComponent(params: { tokenAmounts: TokenAmount[]
                     if (amountBN.gt(0)) {
                         const amountFormatted = ethers.utils.formatUnits(amountBN, tokenAmount.tokenDetail.token.decimals);
                         return <tr>
-                            <td><TokenIconComponent token={tokenAmount.tokenDetail.token}></TokenIconComponent></td>
+                            <td><IconTokenComponent token={tokenAmount.tokenDetail.token}></IconTokenComponent></td>
                             <td>{tokenAmount.tokenDetail.token.symbol}</td>
                             <td className='text-end'>${bnDisplay(tokenAmount.price.toString(), 2)}</td>
                             <td className='text-end' title={amountFormatted}>{bnDisplay(amountFormatted, 4)}</td>

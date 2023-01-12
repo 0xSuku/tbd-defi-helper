@@ -5,9 +5,10 @@ import gmxAdapter from '../../protocols/gmx/gmx-frontend-adapter';
 import { bnDisplay } from '../../helpers/tokenParser';
 import { Protocols, ProtocolTypes } from '../../shared/protocols/constants';
 import { ProtocolItem } from '../../shared/types/protocols';
-import { rewardRouterAddress, rewardRouterABI } from '../../shared/protocols/mummy/mummy-abis';
+import { rewardRouterABI } from '../../shared/protocols/mummy/mummy-abis';
 import { mummyFarms } from '../../shared/protocols/mummy/mummy-farms';
 import './protocol-item.scss';
+import { rewardRouterAddress } from '../../shared/protocols/gmx/gmx-abis';
 
 export interface IProtocolItemComponent {
     items: ProtocolItem[];

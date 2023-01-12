@@ -1,8 +1,8 @@
 import { Token } from '@uniswap/sdk-core';
 import { ChainId } from '../../shared/chains';
-import './token-icon.scss';
+import './icon-token.scss';
 
-export default function TokenIconComponent(params: { token: Token }) {
+export default function IconTokenComponent(params: { token: Token }) {
     const imageSource = `/icons/tokens/${params.token.symbol?.toLowerCase()}.png`;
     const imageChain = `/icons/chains/${ChainId[params.token.chainId].toLowerCase()}.svg`;
 
