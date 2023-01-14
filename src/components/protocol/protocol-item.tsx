@@ -5,10 +5,9 @@ import gmxAdapter from '../../protocols/gmx/gmx-frontend-adapter';
 import { bnDisplay } from '../../helpers/tokenParser';
 import { Protocols, ProtocolTypes } from '../../shared/protocols/constants';
 import { ProtocolItem } from '../../shared/types/protocols';
-import { rewardRouterABI } from '../../shared/protocols/mummy/mummy-abis';
+import { mummyRewardRouterAddress, rewardRouterABI } from '../../shared/protocols/mummy/mummy-abis';
 import { mummyFarms } from '../../shared/protocols/mummy/mummy-farms';
 import './protocol-item.scss';
-import { rewardRouterAddress } from '../../shared/protocols/gmx/gmx-abis';
 
 export interface IProtocolItemComponent {
     items: ProtocolItem[];
@@ -30,7 +29,7 @@ export default function ProtocolItemComponent(req: IProtocolItemComponent) {
                 case Protocols.Mummy:
                     contractStaticInfo = mummyFarms.find(mummyFarms => mummyFarms.address === address);
                     if (contractStaticInfo) {
-                        await gmxAdapter.claimRewards(contractStaticInfo, rewardRouterAddress, JSON.stringify(rewardRouterABI));
+                        await gmxAdapter.claimRewards(contractStaticInfo, mummyRewardRouterAddress, JSON.stringify(rewardRouterABI));
                     }
                     break;
                 default:

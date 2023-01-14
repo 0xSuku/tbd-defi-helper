@@ -1,6 +1,6 @@
 import { ethers } from "ethers"
 
-export const RPC_ETHEREUM = "https://eth-mainnet.g.alchemy.com/v2/fGd5ch2Rr-xB7UX8JWBmFGqqFpSP3Flk"
+export const RPC_ETHEREUM = "https://eth.public-rpc.com"
 export const RPC_POLYGON = "https://polygon-rpc.com"
 export const RPC_BSC = "https://bsc-dataseed1.binance.org/"
 export const RPC_HECO = "https://http-mainnet.hecochain.com"
