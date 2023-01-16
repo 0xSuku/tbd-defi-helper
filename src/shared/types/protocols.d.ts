@@ -1,5 +1,6 @@
 import { ChainId } from '../chains';
 import { Protocols, ProtocolTypes } from '../protocols/constants';
+import { GmxStakeDepositInfo, GmxVestDepositInfo } from '../protocols/entities/gmx';
 import { TokenAmount, TokenDetails } from './tokens';
 
 declare type ProtocolItem = {
@@ -36,3 +37,5 @@ declare type ContractStaticInfo = {
     extraAddresses?: string[];
     extraABIs?: string[];
 }
+
+declare type GmxProtocolDeposit = GmxStakeDepositInfo | GmxVestDepositInfo;

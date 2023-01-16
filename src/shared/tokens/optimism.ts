@@ -41,8 +41,12 @@ const optimism: TokenInfo = {
         tokenInfo: TokenTypes.KNC,
     },
     USDPLUS: {
-        token: new Token(ChainId.Optimism, '0x73cb180bf0521828d8849bc8CF2B920918e23032', 18, 'USD+', 'USD+'),
+        token: new Token(ChainId.Optimism, '0x73cb180bf0521828d8849bc8CF2B920918e23032', 6, 'USD+', 'USD+'),
         tokenInfo: TokenTypes.USDPLUS,
+    },
+    OP: {
+        token: new Token(ChainId.Optimism, '0x4200000000000000000000000000000000000042', 18, 'OP', 'OP'),
+        tokenInfo: TokenTypes.OP,
     },
 };
 

@@ -28,6 +28,7 @@ export enum TokenTypes {
 	GNO = 'GNO',
 	USDPLUS = 'USD+',
 	HUM = 'HUM',
+	OP = 'OP',
 }
 
 export interface TokenTypesData {
@@ -151,5 +152,9 @@ export const tokenTypesData: Record<TokenTypes, TokenTypesData> = {
 	'HUM': {
 		isStable: false,
 		coingeckoName: 'hummus'
+	},
+	'OP': {
+		isStable: false,
+		coingeckoName: 'optimism'
 	}
 }
