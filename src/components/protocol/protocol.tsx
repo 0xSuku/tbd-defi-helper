@@ -1,5 +1,6 @@
 import Accordion from 'react-bootstrap/Accordion';
 import { getProtocolName } from '../../helpers/protocol';
+import { bnDisplay } from '../../helpers/tokenParser';
 import { Protocol } from '../../shared/types/protocols';
 import IconProtocolComponent from '../icon-protocol/icon-protocol';
 import ProtocolItemComponent from './protocol-item';
@@ -10,9 +11,10 @@ export default function ProtocolComponent(protocol: Protocol) {
         protocol.info.length ?
             <Accordion defaultActiveKey="0">
                 <Accordion.Item className='protocol-item' eventKey="0">
-                    <Accordion.Header>
+                    <Accordion.Header className='protocol-header'>
                         <IconProtocolComponent protocol={protocol}></IconProtocolComponent>
-                        &nbsp;{getProtocolName(protocol.symbol)}
+                        <div className='protocol-name'>{getProtocolName(protocol.symbol)}</div>
+                        <div>${bnDisplay(protocol.usdValue.toString(), 2)}</div>
                     </Accordion.Header>
                     <Accordion.Body>
                         {

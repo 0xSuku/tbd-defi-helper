@@ -1,12 +1,15 @@
 import Table from 'react-bootstrap/Table';
-import qiFarms from '../../shared/protocols/qidao/qidao-farms';
-import qiAdapter from '../../protocols/qidao/qidao-adapter';
-import gmxAdapter from '../../protocols/gmx/gmx-frontend-adapter';
 import { bnDisplay } from '../../helpers/tokenParser';
+import gmxAdapter from '../../protocols/gmx/gmx-frontend-adapter';
+import qiAdapter from '../../protocols/qidao/qidao-adapter';
 import { Protocols, ProtocolTypes } from '../../shared/protocols/constants';
+import { DepositInfo } from '../../shared/protocols/entities/deposit';
+import { QiDaoFarmVaultDepositInfo } from '../../shared/protocols/entities/qidao';
+import { gmxFarms, gmxRewardRouterAddress } from '../../shared/protocols/gmx-forks/gmx/gmx-farms';
+import { mummyFarms, mummyRewardRouterAddress } from '../../shared/protocols/gmx-forks/mummy/mummy-farms';
+import qiFarms from '../../shared/protocols/qidao/qidao-farms';
 import { ProtocolItem } from '../../shared/types/protocols';
-// import { mummyRewardRouterAddress, rewardRouterABI } from '../../shared/protocols/mummy/mummy-abis';
-// import { mummyFarms } from '../../shared/protocols/mummy/mummy-farms';
+import IconTokenComponent from '../icon-token/icon-token';
 import './protocol-item.scss';
 
 export interface IProtocolItemComponent {
@@ -17,21 +20,27 @@ export interface IProtocolItemComponent {
 
 export default function ProtocolItemComponent(protocolItem: IProtocolItemComponent) {
     const claimRewards = async (address: string) => {
-        let contractStaticInfo;
+        let depositInfo: DepositInfo | undefined;
         try {
             switch (protocolItem.symbol) {
                 case Protocols.Qi_Dao:
-                    contractStaticInfo = qiFarms.find(qiFarm => qiFarm.address === address);
-                    if (contractStaticInfo) {
-                        await qiAdapter.claimRewards(contractStaticInfo);
+                    depositInfo = qiFarms.find(farm => farm.address === address);
+                    if (depositInfo) {
+                        await qiAdapter.claimRewards(depositInfo as QiDaoFarmVaultDepositInfo);
                     }
                     break;
-                // case Protocols.Mummy:
-                //     contractStaticInfo = mummyFarms.find(mummyFarms => mummyFarms.address === address);
-                //     if (contractStaticInfo) {
-                //         await gmxAdapter.claimRewards(contractStaticInfo, mummyRewardRouterAddress, JSON.stringify(rewardRouterABI));
-                //     }
-                //     break;
+                case Protocols.Mummy:
+                    depositInfo = mummyFarms.find(farm => farm.address === address);
+                    if (depositInfo) {
+                        await gmxAdapter.claimRewards(depositInfo, mummyRewardRouterAddress);
+                    }
+                    break;
+                case Protocols.GMX:
+                    depositInfo = gmxFarms.find(farm => farm.address === address);
+                    if (depositInfo) {
+                        await gmxAdapter.claimRewards(depositInfo, gmxRewardRouterAddress);
+                    }
+                    break;
                 default:
                     throw Error('Claim not declared');
             }
@@ -51,7 +60,7 @@ export default function ProtocolItemComponent(protocolItem: IProtocolItemCompone
                     <tr className='protocol-column'>
                         <th>Pool</th>
                         <th>Balance</th>
-                        <th className='text-end'>Rewards</th>
+                        <th>Rewards</th>
                         <th className='text-end'>USD Value</th>
                         <th></th>
                     </tr>
@@ -59,17 +68,20 @@ export default function ProtocolItemComponent(protocolItem: IProtocolItemCompone
                 <tbody>
                     {items.map(item => (
                         <tr>
-                            <td>{item.pool.map(p => p.token.name)}</td>
+                            <td>{item.name ? item.name : item.balance.map(p => p.tokenDetail.token.symbol).join(' + ')}</td>
                             <td>
                                 {
                                     item.balance.map(balance => {
-                                        return <div>
-                                            {bnDisplay(balance.amount, 4) + ' ' + balance.tokenDetail.token.symbol} (${bnDisplay(balance.usdValue.toString(), 2)})
+                                        return <div className='token-balance'>
+                                            <IconTokenComponent token={balance.tokenDetail.token}></IconTokenComponent>
+                                            <div>
+                                                {bnDisplay(balance.amount, 4) + ' ' + balance.tokenDetail.token.symbol} (${bnDisplay(balance.usdValue.toString(), 2)})
+                                            </div>
                                         </div>
                                     })
                                 }
                             </td>
-                            <td className='text-end'>
+                            <td>
                                 {
                                     item.rewards?.map(reward => {
                                         return <div>
@@ -78,8 +90,8 @@ export default function ProtocolItemComponent(protocolItem: IProtocolItemCompone
                                     })
                                 }
                             </td>
-                            <td className='text-end'>${item.usdValue}</td>
-                            <td><button onClick={() => claimRewards(item.address)}>Claim</button></td>
+                            <td className='text-end'>${bnDisplay(item.usdValue.toString(), 2)}</td>
+                            <td><button className='claim-button' onClick={() => claimRewards(item.address)}>Claim</button></td>
                         </tr>
                     ))}
                 </tbody>

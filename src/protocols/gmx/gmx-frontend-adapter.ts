@@ -1,22 +1,20 @@
 import { getWriteContract } from "../../shared/chains";
-import { ContractStaticInfo } from "../../shared/types/protocols";
+import { GmxProtocolDeposit } from "../../shared/types/protocols";
 import { Protocols } from "../../shared/protocols/constants";
+import { rewardRouterABI } from "../../shared/protocols/gmx-forks/gmx-abis";
 
 export interface IProtocolAdapter {
-    claimRewards: (contractStaticInfo: ContractStaticInfo, gmxRewardRouterAddress: string, gmxRewardRouterABI: string) => Promise<void>;
+    claimRewards: (contractStaticInfo: GmxProtocolDeposit, gmxRewardRouterAddress: string) => Promise<void>;
 }
 
 const gmxAdapter: IProtocolAdapter = {
-    claimRewards: async (contractStaticInfo: ContractStaticInfo, gmxRewardRouterAddress: string, gmxRewardRouterABI: string) => {
-        switch (contractStaticInfo.protocol) {
-            case Protocols.Mummy:
-                const contract = await getWriteContract(contractStaticInfo.chainId, gmxRewardRouterAddress, gmxRewardRouterABI);
-                if (contract) {
-                    await contract.handleRewards(true, false, true, true, true, true, true);
-                } else {
-                    throw Error('Contract not found');
-                }
-                break;
+    claimRewards: async (gmxProtocolDeposit: GmxProtocolDeposit, gmxRewardRouterAddress: string) => {
+        const gmxRewardRouterABI = JSON.stringify(rewardRouterABI)
+        const contract = await getWriteContract(gmxProtocolDeposit.chainId, gmxRewardRouterAddress, gmxRewardRouterABI);
+        if (contract) {
+            await contract.handleRewards(true, false, true, true, true, true, true);
+        } else {
+            throw Error('Contract not found');
         }
     }
 }

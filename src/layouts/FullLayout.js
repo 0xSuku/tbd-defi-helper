@@ -5,7 +5,7 @@ import { Container } from "reactstrap";
 
 const FullLayout = () => {
   return (
-    <main>
+    <main className="mainArea">
       {/********header**********/}
       <Header />
       <div className="pageWrapper d-lg-flex">

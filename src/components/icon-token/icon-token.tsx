@@ -4,7 +4,7 @@ import './icon-token.scss';
 
 export default function IconTokenComponent(params: { token: Token }) {
     const imageSource = `/icons/tokens/${params.token.symbol?.toLowerCase()}.png`;
-    const imageChain = `/icons/chains/${ChainId[params.token.chainId].toLowerCase()}.svg`;
+    const imageChain = `/icons/chains/${ChainId[params.token.chainId].replace(' ', '').toLowerCase()}.svg`;
 
     return <div className='token-icon'>
         {
@@ -12,6 +12,6 @@ export default function IconTokenComponent(params: { token: Token }) {
                 <img className='token-chain' src={imageChain} alt={ChainId[params.token.chainId].toLowerCase()}></img> :
                 <></>
         }
-        <img className='token-icon-image' src={imageSource} alt={params.token.symbol?.toLowerCase()}></img>
+        <img className='token-icon-image' src={imageSource} alt={params.token.name?.toLowerCase()}></img>
     </div>;
 }

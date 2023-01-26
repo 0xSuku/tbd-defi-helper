@@ -1,3 +1,30 @@
-.protocol-item {
-    background-color: transparent;
+@import "../../assets/scss/variables";
+
+.accordion {
+    margin-top: 30px;
+
+    .protocol-item {
+        background-color: transparent !important;
+
+        .protocol-header {
+            display: flex;
+            border: none;
+            width: 100%;
+            height: 40px;
+            border-bottom: 1px solid $primary;
+            box-shadow: 0 20px 20px -17px $primary;
+            margin: -40px auto 10px;
+
+            .accordion-button {
+                gap: 10px;
+                padding: 5px 10px;
+                background: transparent;
+            }
+
+            .protocol-name {
+                flex-grow: 1;
+                font-size: 25px;
+            }
+        }
+    }
 }

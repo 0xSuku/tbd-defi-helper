@@ -10,7 +10,6 @@ import {
     Button,
 } from "reactstrap";
 import Logo from "./Logo";
-import { ReactComponent as LogoWhite } from "../assets/images/logos/materialprowhite.svg";
 import ConnectWallet from "../components/connector/ConnectMetamask";
 import useWallet from "../context/wallet/useWallet";
 import Connected from "../components/connector/Connected";
@@ -29,13 +28,12 @@ const Header = () => {
         document.getElementById("sidebarArea")?.classList.toggle("showSidebar");
     };
     return (
-        <Navbar color="primary" dark expand="md" className="fix-header">
+        <Navbar dark expand="md" className="the-navbar fix-header">
             <div className="d-flex align-items-center">
-                <div className="d-lg-block d-none me-5 pe-3">
+                <div className="d-lg-block d-none me-5 pe-3 logo-container">
                     <Logo />
                 </div>
                 <NavbarBrand href="/">
-                    <LogoWhite className=" d-lg-none" />
                 </NavbarBrand>
                 <Button
                     color="primary"

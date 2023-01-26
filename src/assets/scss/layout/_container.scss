@@ -1,33 +1,44 @@
+.mainArea {
+    background-color: #03031a;
+    background-image: url('/assets/images/bg/stars.svg');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-attachment: fixed;
+}
+
 .pageWrapper {
-  min-height: 100vh;
+    min-height: 100vh;
 }
+
 .contentArea {
-  flex-grow: 1;
-  margin: 0 auto;  
-  background-color: #03031a;
-  background-image: url('/assets/images/bg/stars.svg');  
+    flex-grow: 1;
+    margin: 0 auto;
 }
+
 .card {
-  box-shadow: $card-box-shadow;
-  margin-bottom: 30px;
+    box-shadow: $card-box-shadow;
+    margin-bottom: 30px;
 }
 
 .circle-box {
-  width: 40px;
-  height: 40px;
-  line-height: 40px;
-  text-align: center;
-  border-radius: 100%;
-  &.lg-box {
-    width: 60px;
-    height: 60px;
-    font-size: 21px;
-    line-height: 60px;
-  }
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 100%;
+
+    &.lg-box {
+        width: 60px;
+        height: 60px;
+        font-size: 21px;
+        line-height: 60px;
+    }
 }
+
 .button-group .btn {
-  margin: 3px;
+    margin: 3px;
 }
+
 table th {
-  font-weight: 500;
+    font-weight: 500;
 }
