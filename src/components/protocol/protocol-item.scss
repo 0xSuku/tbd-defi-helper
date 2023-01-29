@@ -1,86 +1,60 @@
 @import "../../assets/scss/variables";
 
-.protocol-column {
-    color: #adadad;
 
-    th {
-        font-size: 14px;
-        padding: 0rem 0.5rem;    
-    }
-
-    :nth-child(1) {
-        width: 16%;
-    }
-
-    :nth-child(2) {
-        width: 38%;
-    }
-
-    :nth-child(3) {
-        width: 26%;
-    }
-
-    :nth-child(4) {
-        width: 12%;
-    }
-
-    :nth-child(5) {
-        width: 6%;
-    }
-}
-
-.protocol-type {
-    font-size: 14px;
-    font-weight: 400;
-    background: $primary;
-    border-radius: 5px 30px 0px 0px;
-    border-style: hidden;
-    box-shadow: 0 0 0 1px $primary;
-    padding: 0px 20px;
-    width: 150px;    
-}
-
-.protocol-table {
-    border-radius: 5px 5px 0px 0px;
-    border-style: hidden;
-    box-shadow: 0 0 0 1px $primary;
-    border-color: $primary;
-    background-color: $secondary;
-
-    &> :not(:first-child) {
-        border-top: 3px solid $primary !important;
-    }
-
-    tr {
-        border-bottom-color: $primary;
-        border-bottom-width: 1px;
-
-        .claim-button {
-            cursor: pointer;
-         
-           height: 2rem;
-           width: 5rem;
-           position: relative;
-           text-transform: uppercase;
-           border:solid;
-           border-color: $primary;
-           background: $secondary;
-           color: $primary;
-           font-family: 'Rajdhani', sans-serif;
-           text-shadow:  0 0 10px $primary, 0 0 40px $primary,
-             0 0 80px $primary;
-           animation: move;
-           animation-duration: 0.5s;
-         }
-    }
-
+tr.protocol-item-info {
     td {
-        vertical-align: middle;
+        padding: 0;
+        background-color: $primary;
+
+        div.protocol-item-info-container {
+            max-height: 0;
+            padding: 0 10px;
+            box-sizing: border-box;
+            overflow: hidden;
+            transition: max-height 0.3s, padding 0.3s;
+            display: flex;
+            flex-direction: column;
+
+            >div:nth-child(1) {
+                flex-grow: 1;
+            }
+        }
     }
 
-    .token-balance {
+    &.active td div.protocol-item-info-container {
+        max-height: 1000px;
+        padding: 10px 10px;
+        transition: max-height 0.6s, padding 0.6s;
+    }
+}
+
+.deposit-info {
+    cursor: pointer;
+    position: relative;
+
+    .protocol-title {
+        padding-left: 3px;
+        font-size: 20px;
+        text-shadow: $text-shadow;
+    }
+
+    .protocol-name {
         display: flex;
-        align-items: center;
-        gap: 5px;
+        gap: 4px;
+        font-size: 14px;
+        font-weight: 500;
+
+        .protocol-icon {
+            width: 18px;
+            height: 18px;
+        }
+    }
+
+    .display-more-info {    
+        position: absolute;
+        right: -15px;
+        bottom: -16px;
+        font-size: 16px;
+        font-weight: 500;
     }
 }

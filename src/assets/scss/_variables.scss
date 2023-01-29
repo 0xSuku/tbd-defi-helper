@@ -8,14 +8,14 @@ $font-family-sans-serif: 'Rajdhani', sans-serif;
 /*******************/
 // Theme Colors
 /********************/
-$primary: #059700;
-$info: #046d00;
+$primary: #133B5C;
+$secondary: #1D2D50;
+$info: #d800bb;
+$text-shadow: 0px 0px 8px $info;
+$text-color: #fff;
 $danger: #f62d51;
 $success: #39c449;
 $warning: #ffbc34;
-$dark: #343a40;
-$light: #eaf2fb;
-$secondary: #35363b;
 
 $theme-colors: (
   "primary": $primary,
@@ -24,25 +24,9 @@ $theme-colors: (
   "info": $info,
   "warning": $warning,
   "danger": $danger,
-  "light": $light,
-  "dark": $dark,
-  "light-primary": #d6e4f3,
-  "light-success": #d5f3f2,
-  "light-info": #d3edfa,
-  "light-warning": #f8ecdc,
-  "light-danger": #f8dddd
 );
 // scss-docs-start gray-color-variables
 $white: #fff !default;
-$gray-100: #8c028f40 !default;
-$gray-200: #f2f7f8 !default;
-$gray-300: #dee2e6 !default;
-$gray-400: #ced4da !default;
-$gray-500: #adb5bd !default;
-$gray-600: #757e85 !default;
-$gray-700: #495057 !default;
-$gray-800: #343a40 !default;
-$gray-900: #1e2a35 !default;
 $black: #000 !default;
 
 /*******************/
@@ -53,7 +37,6 @@ $font-weight-bold: 500 !default;
 /*******************/
 // Theme body bg & text color
 /********************/
-$body-bg: $gray-700 !default;
 $body-color: $white !default;
 $gradient: linear-gradient(-90deg, rgba($white, 0.5), rgba($white, 0)) !default;
 

@@ -1,6 +1,5 @@
 import { getWriteContract } from "../../shared/chains";
 import { GmxProtocolDeposit } from "../../shared/types/protocols";
-import { Protocols } from "../../shared/protocols/constants";
 import { rewardRouterABI } from "../../shared/protocols/gmx-forks/gmx-abis";
 
 export interface IProtocolAdapter {

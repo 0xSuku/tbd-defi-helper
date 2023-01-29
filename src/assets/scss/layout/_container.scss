@@ -1,9 +1,7 @@
+@import "../variables";
+
 .mainArea {
-    background-color: #03031a;
-    background-image: url('/assets/images/bg/stars.svg');
-    background-repeat: no-repeat;
-    background-size: 100%;
-    background-attachment: fixed;
+    background-color: $primary;
 }
 
 .pageWrapper {

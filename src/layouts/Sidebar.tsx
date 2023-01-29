@@ -3,30 +3,15 @@ import { Link, useLocation } from "react-router-dom";
 
 const navigation = [
     {
-        title: "Dashboard",
-        href: "/dashboard",
-        icon: "bi bi-clipboard-data",
-    },
-    {
         title: "Wallet",
         href: "/wallet",
         icon: "bi bi-wallet",
     },
     {
-        title: "Protocols",
-        href: "/protocols",
+        title: "Positions",
+        href: "/positions",
         icon: "bi bi-cash",
     },
-    // {
-    //     title: "History",
-    //     href: "/history",
-    //     icon: "bi bi-clock-history",
-    // },
-    // {
-    //     title: "Alerts",
-    //     href: "/alerts",
-    //     icon: "bi bi-bell",
-    // },
 ];
 
 const Sidebar = () => {

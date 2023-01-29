@@ -6,14 +6,16 @@
 @import "./layout/container";
 
 .component-display {
-    max-width: 1000px;
+    max-width: 1200px;
     margin: auto;
     background: transparent;
     border-radius: 10px;
     padding: 10px 20px;
+    background-color: $secondary;
 }
 
 * {
     font-size: 16px;
     font-weight: 600;
+    color: $text-color;
 }

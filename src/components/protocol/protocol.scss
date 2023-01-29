@@ -1,30 +1,66 @@
 @import "../../assets/scss/variables";
 
-.accordion {
-    margin-top: 30px;
+.protocol-table {
+    border-radius: 5px 5px 0px 0px;
+    border-style: hidden;
 
-    .protocol-item {
-        background-color: transparent !important;
+    .protocol-column {
+        color: $text-color;
 
-        .protocol-header {
-            display: flex;
-            border: none;
-            width: 100%;
-            height: 40px;
-            border-bottom: 1px solid $primary;
-            box-shadow: 0 20px 20px -17px $primary;
-            margin: -40px auto 10px;
-
-            .accordion-button {
-                gap: 10px;
-                padding: 5px 10px;
-                background: transparent;
-            }
-
-            .protocol-name {
-                flex-grow: 1;
-                font-size: 25px;
-            }
+        th {
+            font-size: 14px;
+            padding: 0rem 0.5rem;
         }
+
+        :nth-child(1) {
+            width: 26%;
+        }
+
+        :nth-child(2) {
+            width: 34%;
+        }
+
+        :nth-child(3) {
+            width: 28%;
+        }
+    }
+
+    &> :not(:first-child) {
+        border-top: 3px solid $primary !important;
+    }
+
+    tr {
+        border-bottom-color: $primary;
+        border-bottom-width: 1px;
+
+        td {
+            border-bottom-width: 0px;
+        }
+
+        .claim-button {
+            cursor: pointer;
+            height: 2rem;
+            width: 2rem;
+            padding: 0;
+            text-align: center;
+            position: relative;
+            text-transform: uppercase;
+            border: solid;
+            border-color: $text-color;
+            background: $secondary;
+            color: $text-color;
+            box-shadow: 0 0 10px $info;
+            border-radius: 10px;
+        }
+    }
+
+    td {
+        vertical-align: middle;
+    }
+
+    .token-balance {
+        display: flex;
+        align-items: center;
+        gap: 5px;
     }
 }
