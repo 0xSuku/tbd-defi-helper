@@ -9,7 +9,7 @@ import { Protocols, ProtocolTypes } from '../../shared/protocols/constants';
 import { DepositInfo } from '../../shared/protocols/entities/deposit';
 import { QiDaoFarmVaultDepositInfo } from '../../shared/protocols/entities/qidao';
 import { gmxFarms, gmxRewardRouterAddress } from '../../shared/protocols/gmx-forks/gmx/gmx-farms';
-import { mummyFarms, mummyRewardRouterAddress } from '../../shared/protocols/gmx-forks/mummy/mummy-farms';
+import { mummyFarms, rewardRouterV2 } from '../../shared/protocols/gmx-forks/mummy/mummy-farms';
 import qiFarms from '../../shared/protocols/qidao/qidao-farms';
 import { Protocol, DepositItem } from '../../shared/types/protocols';
 import IconProtocolComponent from '../icon-protocol/icon-protocol';
@@ -45,7 +45,7 @@ export default function DepositItemComponent(depositItem: IDepositItemComponent)
                 case Protocols.Mummy:
                     depositInfo = mummyFarms.find(farm => farm.address === address);
                     if (depositInfo) {
-                        await gmxAdapter.claimRewards(depositInfo, mummyRewardRouterAddress);
+                        await gmxAdapter.claimRewards(depositInfo, rewardRouterV2);
                     }
                     break;
                 case Protocols.GMX:
